@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlook Setup Guide | demo@chhunmeyling.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #7c3aed;
+            --text: #1f2937;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .server-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--light);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .server-table th, .server-table td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .server-table th {
+            background: var(--primary);
+            color: white;
+        }
+
+        .server-table tr:nth-child(even) {
+            background: #f1f5f9;
+        }
+
+        .download-btn {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            border: 2px solid var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .test-email {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .copy-btn {
+            background: var(--light);
+            border: 1px solid #e5e7eb;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Connect demo@chhunmeyling.com to Outlook</h1>
+            <p>Follow these simple steps to configure your email account</p>
+        </div>
+
+        <div class="guide-card">
+            <div class="step-number">1</div>
+            <h2>Download Microsoft Outlook</h2>
+            <button class="download-btn" onclick="downloadOutlook()">
+                <i class="fas fa-download"></i>
+                Download Outlook
+            </button>
+        </div>
+
+        <div class="guide-card">
+            <div class="step-number">2</div>
+            <h2>Configure Account Settings</h2>
+            <table class="server-table">
+                <tr>
+                    <th>Setting</th>
+                    <th>Value</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Account Type</td>
+                    <td>IMAP</td>
+                    <td><button class="copy-btn" onclick="copyText('IMAP')">Copy</button></td>
+                </tr>
+                <tr>
+                    <td>Incoming Server</td>
+                    <td>imap.chhunmeyling.com</td>
+                    <td><button class="copy-btn" onclick="copyText('imap.chhunmeyling.com')">Copy</button></td>
+                </tr>
+                <tr>
+                    <td>Outgoing Server</td>
+                    <td>smtp.chhunmeyling.com</td>
+                    <td><button class="copy-btn" onclick="copyText('smtp.chhunmeyling.com')">Copy</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="guide-card">
+            <div class="step-number">3</div>
+            <h2>Test Your Connection</h2>
+            <div class="test-email">
+                <div class="input-group">
+                    <input type="text" id="testSubject" placeholder="Enter test subject">
+                </div>
+                <div class="input-group">
+                    <textarea id="testMessage" placeholder="Enter test message"></textarea>
+                </div>
+                <button class="download-btn" onclick="sendTestEmail()">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Test Email
+                </button>
+                <div class="success-message" id="successMessage">
+                    Test email sent successfully! Check your inbox.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadOutlook() {
+            window.open('https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook', '_blank');
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert('Copied to clipboard: ' + text);
+        }
+
+        function sendTestEmail() {
+            const subject = document.getElementById('testSubject').value;
+            const message = document.getElementById('testMessage').value;
+
+            if (subject && message) {
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('testSubject').value = '';
+                document.getElementById('testMessage').value = '';
+                
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            } else {
+                alert('Please fill in both fields');
+            }
+        }
+    </script>
+</body>
+</html>
