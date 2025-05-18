@@ -11,7 +11,11 @@
             --secondary: #3b82f6;
             --accent: #7c3aed;
             --text: #1f2937;
-            --light: #f8fafc;
+            --light: #f9fafb;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --success-bg: #dcfce7;
+            --success-text: #166534;
         }
 
         * {
@@ -25,21 +29,33 @@
             background: #ffffff;
             color: var(--text);
             line-height: 1.6;
+            font-size: 1rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
         }
 
         .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             padding: 4rem 2rem;
             text-align: center;
             border-radius: 1rem;
             margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #e0e7ff;
         }
 
         .guide-card {
@@ -47,32 +63,41 @@
             border-radius: 1rem;
             padding: 2rem;
             margin: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e5e7eb;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
         }
 
         .step-number {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
         }
 
         .server-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
+            margin-top: 1rem;
             background: var(--light);
             border-radius: 0.5rem;
             overflow: hidden;
         }
 
-        .server-table th, .server-table td {
+        .server-table th,
+        .server-table td {
             padding: 1rem;
             text-align: left;
         }
@@ -80,6 +105,7 @@
         .server-table th {
             background: var(--primary);
             color: white;
+            font-weight: 600;
         }
 
         .server-table tr:nth-child(even) {
@@ -87,73 +113,93 @@
         }
 
         .download-btn {
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
-            border: 2px solid var(--primary);
+            border: none;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1rem;
         }
 
         .download-btn:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--secondary);
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
         }
 
         .test-email {
             background: var(--light);
             padding: 2rem;
             border-radius: 1rem;
+            border: 1px solid var(--border);
             margin-top: 2rem;
         }
 
         .input-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        input, textarea {
+        input,
+        textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e5e7eb;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
             border-radius: 0.5rem;
-            margin-top: 0.5rem;
+            font-size: 1rem;
+            transition: border 0.2s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
         }
 
         .success-message {
-            background: #dcfce7;
-            color: #166534;
+            background: var(--success-bg);
+            color: var(--success-text);
             padding: 1rem;
             border-radius: 0.5rem;
             margin-top: 1rem;
             display: none;
+            font-weight: 500;
         }
 
         .copy-btn {
-            background: var(--light);
-            border: 1px solid #e5e7eb;
-            padding: 0.25rem 0.75rem;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 0.4rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease;
+            font-size: 0.9rem;
+            color: var(--text);
         }
 
         .copy-btn:hover {
-            background: #e2e8f0;
+            background: #e5e7eb;
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
-            
-            .hero {
-                padding: 2rem 1rem;
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .download-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -191,12 +237,12 @@
                 <tr>
                     <td>Incoming Server</td>
                     <td>imap.keadaron.com</td>
-                    <td><button class="copy-btn" onclick="copyText('imap.chhunmeyling.com')">Copy</button></td>
+                    <td><button class="copy-btn" onclick="copyText('imap.keadaron.com')">Copy</button></td>
                 </tr>
                 <tr>
                     <td>Outgoing Server</td>
                     <td>smtp.keadaron.com</td>
-                    <td><button class="copy-btn" onclick="copyText('smtp.chhunmeyling.com')">Copy</button></td>
+                    <td><button class="copy-btn" onclick="copyText('smtp.keadaron.com')">Copy</button></td>
                 </tr>
             </table>
         </div>
@@ -240,7 +286,7 @@
                 document.getElementById('successMessage').style.display = 'block';
                 document.getElementById('testSubject').value = '';
                 document.getElementById('testMessage').value = '';
-                
+
                 setTimeout(() => {
                     document.getElementById('successMessage').style.display = 'none';
                 }, 5000);
